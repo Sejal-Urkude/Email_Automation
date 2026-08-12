@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: #0a6ed1; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+    .content { padding: 20px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 0 0 8px 8px; }
+    .preview-box { background: #f0f4ff; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #0a6ed1; }
+    .calendar-link { display: inline-block; padding: 8px 16px; background: #fff; border: 1px solid #ddd; border-radius: 4px; margin: 5px; text-decoration: none; color: #333; }
+    .footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>VASPP GmbH</h2>
+  </div>
+  <div class="content">
+    <p>Hi {{firstName}},</p>
+    <p><strong>One week to go</strong> until our session on demand forecasting in CPG.</p>
+
+    <div class="preview-box">
+      <strong>Here's a question we'll be exploring:</strong><br>
+      Most CPG planning systems produce a single number — one forecast per SKU. But a forecast of 10,000 units where the model is highly confident is fundamentally different from a forecast of 10,000 units where the model has almost no reference to lean on.
+    </div>
+
+    <h3>Add to Calendar</h3>
+    <div style="margin: 10px 0;">
+      <a href="#" class="calendar-link">📅 Google Calendar</a>
+      <a href="#" class="calendar-link">📅 Outlook</a>
+      <a href="#" class="calendar-link">📅 iCal</a>
+    </div>
+
+    <p><strong>Your join link:</strong> {{joinLink}}</p>
+
+    <p>Best regards,<br>The VASPP Team</p>
+  </div>
+  <div class="footer">
+    <p>© {{year}} VASPP GmbH. All rights reserved.</p>
+  </div>
+</body>
+</html>

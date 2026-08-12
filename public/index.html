@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Automation Dashboard</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    .container {
+    max-width: 1300px;
+    margin: auto;
+}
+    body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f8fafc;
+    color: #1f2937;
+    margin: 0;
+    padding: 30px;
+}
+    .header{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    padding:20px 30px;
+    margin-bottom:20px;
+    text-align: center; 
+}
+    .header h1{
+    font-size:35px;
+    font-weight:680;
+    color:#1f2937;
+}
+    .header p{
+    color:#6b7280;
+    margin-top:5px;
+}
+    
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .stat-card { background: white; padding: 20px; border-radius: 8px;box-shadow:0 1px 3px rgba(0,0,0,.05);; text-align: center; }
+    .stat-value{
+    font-size:28px;
+    font-weight:700;
+    color:#2563eb;
+}
+.timeline-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 15px;
+
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+.timeline-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.timeline-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.timeline-icon{
+
+    font-size:28px;
+
+}
+
+.timeline-title{
+
+    font-weight:600;
+
+    font-size:17px;
+
+}
+
+.timeline-date{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+.timeline-right{
+
+    color:#2563eb;
+
+    font-weight:bold;
+
+    font-size:16px;
+
+}
+.more-wrapper{
+    position:relative;
+    display:inline-block;
+    cursor:pointer;
+    color:#2563eb;
+    font-weight:600;
+}
+
+.more-popup{
+    display:none;
+    position:absolute;
+    left:0;
+    top:22px;
+    min-width:180px;
+    background:white;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+    z-index:999;
+}
+
+.more-wrapper:hover .more-popup{
+    display:block;
+}
+.section small{
+    color:#6b7280;
+    font-size:13px;
+}
+    .stat-number { font-size: 32px; font-weight: bold; color: #0a6ed1; }
+    .stat-label { color: #666; margin-top: 5px; font-size: 14px; }
+    
+    .section { background: white; padding: 25px; border-radius: 8px;box-shadow:0 1px 3px rgba(0,0,0,.05);; margin-bottom: 30px; }
+    .section h2 { margin-bottom: 20px; color: #333; font-size: 20px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+    
+    table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
+    th{
+    background:#f9fafb;
+    color:#374151;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    padding:16px;
+    vertical-align:middle;
+}
+    td{
+    padding:18px;
+    border-bottom:1px solid #f3f4f6;
+    color:#374151;
+    vertical-align:middle;
+}
+    tbody tr:hover{
+    background:#f8fafc;
+    transition:.2s;
+}
+    
+    .badge{
+    border-radius:4px;
+    padding:5px 10px;
+    font-size:12px;
+}
+    .badge-registered { background: #d4edda; color: #155724; }
+    .badge-attended { background: #cce5ff; color: #004085; }
+    .badge-pending { background: #fff3cd; color: #856404; }
+    
+    .btn{
+    padding:10px 18px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:500;
+}
+    .btn-primary{
+    background:#2563eb;
+    color:white;
+    border:none;
+}
+    .btn-primary:hover { background: #0858a8; }
+    .btn-success{
+    background:white;
+    color:#2563eb;
+    border:1px solid #2563eb;
+}
+    .btn-success:hover{
+    background:#2563eb;
+    color:white;
+}
+    .btn-danger{
+    background:white;
+    color:#dc2626;
+    border:1px solid #dc2626;
+}
+    .btn-danger:hover{
+    background:#dc2626;
+    color:white;
+}
+    .btn-warning{
+    background:white;
+    border:1px solid #d1d5db;
+    color:#374151;
+}
+    .btn-warning:hover{
+    background:#f3f4f6;
+}
+    
+    .status{
+    background:white;
+    border:1px solid #e5e7eb;
+    padding:18px;
+    border-radius:8px;
+    display:flex;
+    justify-content:space-between;
+}
+    
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+    .form-group input{
+    width:100%;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:6px;
+    font-size:14px;
+}
+
+.form-group input:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
+    .modal-content{
+    background:white;
+    border-radius:8px;
+    padding:25px;
+    width:420px;
+    box-shadow:0 10px 25px rgba(245, 3, 3, 0.08);
+}
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .modal-close { cursor: pointer; font-size: 24px; }
+    
+    @media (max-width: 768px) {
+      .form-row { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .status { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>Email Automation Dashboard</h1>
+      <p>Manage contacts, schedule emails and monitor activity.</p>
+    </div>
+
+    <!-- Status -->
+    <div class="status">
+      <div id="systemStatus">
+
+    <div id="serverStatus"
+         style="font-weight:bold;color:green;">
+        Live
+    </div>
+
+    <div id="lastChecked"
+         style="font-size:12px;color:#777;">
+         Last checked:
+         --
+    </div>
+
+</div>
+      <div>
+        <strong>Webinar:</strong> 
+        <span id="webinarDate">Loading...</span>
+      </div>
+      <div>
+        <strong>Days Remaining :</strong> 
+        <span id="daysUntil">Loading...</span>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="section">
+    <div style="
+display:grid;
+grid-template-columns:repeat(4,1fr);
+text-align:center;
+gap:20px;
+">
+        <div>
+            <h3 id="totalContacts" class="stat-value">0</h3>
+            <small>Contacts</small>
+        </div>
+
+        <div>
+            <h3 id="registeredCount" class="stat-value">0</h3>
+            <small>Registered</small>
+        </div>
+
+        <div>
+            <h3 id="attendedCount" class="stat-value">0</h3>
+            <small>Attended</small>
+        </div>
+
+        <div>
+            <h3 id="emailSent" class="stat-value">0</h3>
+            <small>Emails Sent</small>
+        </div>
+        <div class="stat-card">
+            <h3 id="registrationRate">0%</h3>
+            <p>Registration Rate</p>
+        </div>
+        
+        <div class="stat-card">
+            <h3 id="attendanceRate">0%</h3>
+            <p>Attendance Rate</p>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Campaign Timeline -->
+<div class="section">
+
+    <h2>Upcoming Email Schedule</h2>
+    <small>Next Emails</small>
+
+    <div id="campaignTimeline">
+        Loading campaign...
+    </div>
+
+</div>
+
+    <!-- Actions -->
+    <div class="section">
+      <h2>Actions</h2>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn btn-primary" onclick="openAddContactModal()"> Add Contact</button>
+        <button class="btn btn-success" onclick="processEmails()"> Send Scheduled Emails</button>
+        <button class="btn btn-warning" onclick="refreshData()"> Refresh</button>
+        <button class="btn btn-danger" onclick="clearLogs()"> Clear Logs</button>
+      </div>
+    </div>
+
+
+    <!-- Add Contact Modal -->
+    <div class="modal" id="addContactModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2> Add New Contact</h2>
+          <span class="modal-close" onclick="closeModal('addContactModal')">&times;</span>
+        </div>
+        <form id="addContactForm">
+          <div class="form-group">
+            <label>First Name *</label>
+            <input type="text" id="firstName" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName">
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" id="company">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Add Contact</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Contacts Table -->
+    <div class="section">
+      <h2> Contacts</h2>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Company</th>
+              <th>Next Email</th>
+              <th>Registered</th>
+              <th>Attended</th>
+            </tr>
+          </thead>
+          <tbody id="contactsBody">
+            <tr><td colspan="6" style="text-align: center; color: #999;">Loading contacts...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Email Logs -->
+    <div class="section">
+      <h2>Email History</h2>
+      <div style="overflow-x: auto; max-height: 300px; overflow-y: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>To</th>
+              <th>Template</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="logsBody">
+            <tr><td colspan="4" style="text-align: center; color: #999;">Loading logs...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ==================== API Calls ====================
+    async function checkServerStatus(){
+
+    try{
+
+        const response = await fetch("/health");
+
+        if(response.ok){
+
+            document.getElementById("serverStatus").innerHTML =
+                "🟢 Live";
+
+            document.getElementById("serverStatus").style.color =
+                "green";
+
+            const now = new Date();
+
+            document.getElementById("lastChecked").innerHTML =
+                "Last checked: " +
+                now.toLocaleTimeString();
+
+        }
+
+        else{
+
+            throw new Error();
+
+        }
+
+    }
+
+    catch{
+
+        document.getElementById("serverStatus").innerHTML =
+            "🔴 Offline";
+
+        document.getElementById("serverStatus").style.color =
+            "red";
+
+    }
+
+}
+
+    async function fetchAPI(endpoint, options = {}) {
+      try {
+        const response = await fetch(`/api/${endpoint}`, {
+          headers: { 'Content-Type': 'application/json' },
+          ...options
+        });
+        return await response.json();
+      } catch (error) {
+        console.error(`API Error (${endpoint}):`, error);
+        return { success: false, error: error.message };
+      }
+    }
+
+    // ==================== Load Data ====================
+    
+    async function loadDashboard() {
+
+    try {
+
+        // Health
+        const health = await fetch("/health").then(r => r.json());
+
+        document.getElementById("webinarDate").textContent =
+            health.webinarDate;
+
+        document.getElementById("daysUntil").textContent =
+            health.daysUntil + " days";
+
+
+        // Contacts
+        const contacts = await fetchAPI("contacts");
+
+        if (contacts.success) {
+
+            renderContacts(contacts.data);
+            updateStats(contacts.data);
+
+        }
+
+        // Logs
+        await loadLogs();
+
+        // Stats
+        await loadStats();
+
+        // Timeline
+        await loadTimeline();
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+    }
+
+}
+async function loadTimeline() {
+
+    const response = await fetchAPI("timeline");
+
+    if (!response.success) return;
+
+    let html = "";
+
+    response.data.forEach(item => {
+
+        html += `
+
+<div class="timeline-item">
+
+    <div class="timeline-left">
+
+        <div class="timeline-icon">📧</div>
+
+        <div>
+
+            <div class="timeline-title">
+                ${item.title}
+            </div>
+
+            <div class="timeline-date">
+                ${item.subtitle}<br>
+                ${item.date}
+            </div>
+
+            <br>
+
+            <div style="font-weight:600;">
+                Recipients
+            </div>
+
+            <div style="color:#2563eb;">
+                👥 ${item.recipientCount} Contacts
+            </div>
+
+           <div style="margin-top:6px;color:#666;">
+
+    ${item.previewRecipients.join("<br>")}
+
+    ${
+        item.remainingRecipients.length
+        ?
+        `
+        <div>
+
+            <a href="#"
+               onclick="showMore(this, ${JSON.stringify(item.remainingRecipients).replace(/"/g,'&quot;')}); return false;"
+               style="color:#2563eb;font-weight:600;text-decoration:none;">
+               +${item.remainingRecipients.length} More
+            </a>
+
+            <div class="hiddenRecipients"></div>
+
+        </div>
+        `
+        :
+        ""
+    }
+
+</div> 
+
+        </div>
+
+    </div>
+
+    <div class="timeline-right">
+
+        ${item.daysLeft} Days Left
+
+    </div>
+
+</div>
+
+`;
+
+    });
+
+    document.getElementById("campaignTimeline").innerHTML = html;
+
+}
+function showMore(link, recipients) {
+
+    const container = link.parentElement.querySelector(".hiddenRecipients");
+
+    // Collapse
+    if (container.innerHTML !== "") {
+        container.innerHTML = "";
+        link.innerHTML = `+${recipients.length} More`;
+        return;
+    }
+
+    // Show recipients
+    container.innerHTML =
+        recipients
+            .map(name => `<div>${name}</div>`)
+            .join("")
+        +
+        `<div style="margin-top:6px;">
+            <a href="#"
+               onclick="showMore(this.parentElement.parentElement.previousElementSibling, ${JSON.stringify(recipients).replace(/"/g,'&quot;')}); return false;">
+               Show Less
+            </a>
+         </div>`;
+
+    // Hide the original +More link
+    link.style.display = "none";
+}
+async function loadStats(){
+
+    try{
+
+        const response = await fetch("/api/stats");
+
+        const result = await response.json();
+
+        if(!result.success) return;
+
+        const stats = result.data;
+
+        document.getElementById("totalContacts").textContent =
+            stats.contacts;
+
+        document.getElementById("registeredCount").textContent =
+            stats.registered;
+
+        document.getElementById("attendedCount").textContent =
+            stats.attended;
+
+        document.getElementById("emailSent").textContent =
+            stats.emailsSent;
+
+        document.getElementById("registrationRate").textContent =
+            stats.registrationRate + "%";
+
+        document.getElementById("attendanceRate").textContent =
+            stats.attendanceRate + "%";
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+    }
+
+}
+let countdownInterval;
+
+function startCountdown(targetDate){
+
+    clearInterval(countdownInterval);
+
+    const target = new Date(targetDate);
+
+    countdownInterval = setInterval(()=>{
+
+        const now = new Date();
+
+        const diff = target - now;
+
+        if(diff<=0){
+
+            document.getElementById("nextCountdown").innerHTML =
+            "Sending Now";
+
+            clearInterval(countdownInterval);
+
+            return;
+        }
+
+        const days =
+        Math.floor(diff/(1000*60*60*24));
+
+        const hours =
+        Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+
+        const minutes =
+        Math.floor((diff%(1000*60*60))/(1000*60));
+
+        const seconds =
+        Math.floor((diff%(1000*60))/1000);
+
+        document.getElementById("nextCountdown").innerHTML =
+
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    },1000);
+
+}
+    function renderContacts(contacts) {
+      const tbody = document.getElementById('contactsBody');
+      
+      if (!contacts || contacts.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #999;">No contacts found</td></tr>';
+        return;
+      }
+      
+      let html = '';
+      contacts.forEach(contact => {
+        const status = contact.attended ? 'Attended' : (contact.registered ? 'Registered' : 'Pending');
+        const statusClass = contact.attended ? 'badge-attended' : (contact.registered ? 'badge-registered' : 'badge-pending');
+        
+        html += `
+          <tr>
+            <td style="font-weight:600;">
+    ${contact.firstName} ${contact.lastName || ''}
+</td>
+            <td style="font-size:13px;color:#4b5563;">
+${contact.email}
+</td>
+            <td style="color:#6b7280;">
+${contact.company || "-"}
+</td>
+            <td>${getNextEmail(contact)}</td>
+            <td>${contact.registered ? "Registered" : "-"}</td>
+            <td>${contact.attended ? "Attended" : "-"}</td>
+          </tr>
+        `;
+      });
+      
+      tbody.innerHTML = html;
+     }
+     function getNextEmail(contact){
+
+    if(!contact.registered){
+        return "Welcome Email";
+    }
+
+    if(contact.registered && !contact.attended){
+        return "Reminder Email";
+    }
+
+    if(contact.attended){
+        return "Thank You Email";
+    }
+
+    return "-";
+}
+
+    function updateStats(contacts) {
+      const total = contacts.length;
+      const registered = contacts.filter(c => c.registered).length;
+      const attended = contacts.filter(c => c.attended).length;
+      
+      document.getElementById('totalContacts').textContent = total;
+      document.getElementById('registeredCount').textContent = registered;
+      document.getElementById('attendedCount').textContent = attended;
+    }
+
+    async function loadLogs() {
+      try {
+        const response = await fetch('/api/logs');
+        if (response.ok) {
+          const data = await response.json();
+          renderLogs(data.data || []);
+          const sentCount = data.data
+    ? data.data.filter(log => log.status === "sent").length
+    : 0;
+
+document.getElementById("emailSent").textContent = sentCount;
+        }
+      } catch (error) {
+        console.error('Error loading logs:', error);
+      }
+    }
+
+    function renderLogs(logs) {
+      const tbody = document.getElementById('logsBody');
+      
+      if (!logs || logs.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #999;">No email activity available.</td></tr>';
+        return;
+      }
+      
+      let html = '';
+      // Show last 20 logs
+      logs.slice(-20).reverse().forEach(log => {
+        html += `
+          <tr>
+            <td>${new Date(log.timestamp).toLocaleString()}</td>
+            <td>${log.to}</td>
+            <td>${log.template || '-'}</td>
+            <td><span class="badge badge-success">${log.status}</span></td>
+          </tr>
+        `;
+      });
+      
+      tbody.innerHTML = html;
+    }
+
+    // ==================== Actions ====================
+    
+    async function processEmails() {
+      const btn = event.target;
+      btn.textContent = ' Processing...';
+      btn.disabled = true;
+      
+      try {
+        const result = await fetchAPI('process-emails', { method: 'POST' });
+        if (result.success) {
+          showToast(' Emails processed successfully!');
+        } else {
+          alert(' Error: ' + (result.error || 'Unknown error'));
+        }
+      } catch (error) {
+        alert(' Error processing emails: ' + error.message);
+      } finally {
+        btn.textContent = ' Send Scheduled Emails';
+        btn.disabled = false;
+      }
+    }
+    function showToast(message){
+
+    const toast=document.createElement("div");
+
+    toast.innerHTML=message;
+
+    toast.style.position="fixed";
+    toast.style.top="20px";
+    toast.style.right="20px";
+    toast.style.background="#16a34a";
+    toast.style.color="white";
+    toast.style.padding="12px 18px";
+    toast.style.borderRadius="6px";
+    toast.style.boxShadow="0 5px 15px rgba(0,0,0,.2)";
+    toast.style.zIndex="9999";
+
+    document.body.appendChild(toast);
+
+    setTimeout(()=>{
+        toast.remove();
+    },3000);
+
+}
+
+    function openAddContactModal() {
+      document.getElementById('addContactModal').style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    async function refreshData() {
+      await loadDashboard();
+      showToast(' Data refreshed!');
+    }
+
+    async function clearLogs() {
+      if (confirm('Are you sure you want to clear all logs?')) {
+        try {
+          const response = await fetch('/api/clear-logs', { method: 'POST' });
+          const result = await response.json();
+          if (result.success) {
+            showToast(' Logs cleared!');
+            await loadTimeline();
+            await loadLogs();
+          }
+        } catch (error) {
+          alert(' Error clearing logs: ' + error.message);
+        }
+      }
+    }
+
+    // ==================== Form Handlers ====================
+    
+    document.getElementById('addContactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const company = document.getElementById('company').value.trim();
+      
+      if (!firstName || !email) {
+        alert('First name and email are required');
+        return;
+      }
+      
+      const result = await fetchAPI('contacts', {
+        method: 'POST',
+        body: JSON.stringify({ firstName, lastName, email, company })
+      });
+      
+      if (result.success) {
+        showToast(' Contact added successfully!');
+        closeModal('addContactModal');
+        document.getElementById('addContactForm').reset();
+        await loadDashboard();
+      } else {
+        alert('Error: ' + (result.error || 'Unknown error'));
+      }
+    });
+
+    // Close modal on background click
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+      }
+    };
+
+    // ==================== Initialize ====================
+    
+    loadDashboard();
+    checkServerStatus();
+    // Auto-refresh every 60 seconds
+    setInterval(loadDashboard, 60000);
+    setInterval(checkServerStatus,10000);
+  </script>
+</body>
+</html>

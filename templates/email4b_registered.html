@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webinar Tomorrow</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #0a6ed1, #004a9f); color: white; padding: 25px 20px; text-align: center; border-radius: 8px 8px 0 0; }
+    .content { padding: 30px 25px; background: #ffffff; border: 1px solid #e0e0e0; border-top: none; border-radius: 0 0 8px 8px; }
+    .reminder-box { background: #fff8e1; padding: 15px 20px; border-radius: 6px; margin: 15px 0; border-left: 4px solid #ffc107; }
+    .cta-button { display: inline-block; padding: 14px 35px; background: #0a6ed1; color: white; text-decoration: none; border-radius: 6px; margin: 20px 0; font-weight: bold; }
+    .cta-button:hover { background: #0858a8; }
+    .footer { text-align: center; padding: 20px; color: #888; font-size: 12px; border-top: 1px solid #eee; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>VASPP GmbH</h2>
+    <p style="margin: 5px 0 0; opacity: 0.9;">📅 Tomorrow at {{webinarTime}} {{webinarTimezone}}</p>
+  </div>
+  
+  <div class="content">
+    <p>Hi {{firstName}},</p>
+    <p><strong>Quick reminder:</strong> our session on demand forecasting in CPG is <strong>tomorrow</strong> at <strong>{{webinarTime}} {{webinarTimezone}}</strong>.</p>
+
+    <div class="reminder-box">
+      <p style="margin: 0;"><strong>💡 One thing we'll be digging into:</strong></p>
+      <p style="margin: 5px 0 0;">Why do companies that invest in better forecasting tools often end up with the <strong>same accuracy problems</strong> they started with? The answer might not be where you expect.</p>
+    </div>
+
+    <p><strong>Bring your questions</strong> — we'll have a live Q&A at the end.</p>
+
+    <div style="text-align: center;">
+      <a href="{{joinLink}}" class="cta-button">🎯 Join the Webinar</a>
+    </div>
+
+    <h3 style="color: #0a6ed1; margin-top: 25px;">📅 Add to Calendar</h3>
+    <div style="margin: 10px 0;">
+      <a href="#" style="display: inline-block; padding: 8px 16px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 4px; margin: 5px 5px 5px 0; text-decoration: none; color: #333; font-size: 14px;">📅 Google Calendar</a>
+      <a href="#" style="display: inline-block; padding: 8px 16px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 4px; margin: 5px 5px 5px 0; text-decoration: none; color: #333; font-size: 14px;">📅 Outlook</a>
+      <a href="#" style="display: inline-block; padding: 8px 16px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 4px; margin: 5px 5px 5px 0; text-decoration: none; color: #333; font-size: 14px;">📅 iCal</a>
+    </div>
+
+    <p style="margin-top: 25px; color: #666;">Looking forward to seeing you there!</p>
+    <p style="color: #666;">Best regards,<br><strong>The VASPP Team</strong></p>
+  </div>
+  
+  <div class="footer">
+    <p>© {{year}} VASPP GmbH. All rights reserved.</p>
+  </div>
+</body>
+</html>

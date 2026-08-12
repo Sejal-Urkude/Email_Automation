@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Last Day to Register</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 25px 20px; text-align: center; border-radius: 8px 8px 0 0; }
+    .content { padding: 30px 25px; background: #ffffff; border: 1px solid #e0e0e0; border-top: none; border-radius: 0 0 8px 8px; }
+    .cta-button { display: inline-block; padding: 16px 40px; background: #e74c3c; color: white; text-decoration: none; border-radius: 6px; margin: 20px 0; font-weight: bold; font-size: 16px; }
+    .cta-button:hover { background: #c0392b; }
+    .footer { text-align: center; padding: 20px; color: #888; font-size: 12px; border-top: 1px solid #eee; margin-top: 20px; }
+    .urgent { color: #e74c3c; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>VASPP GmbH</h2>
+    <p style="margin: 5px 0 0; opacity: 0.9;">⏰ FINAL DAY TO REGISTER</p>
+  </div>
+  
+  <div class="content">
+    <p>Hi {{firstName}},</p>
+    <p style="font-size: 18px; color: #e74c3c;"><strong>🚨 Tomorrow is the last chance to join!</strong></p>
+
+    <p>Our session on demand forecasting in CPG is <strong>tomorrow</strong>. A few spots are still available!</p>
+
+    <p>We'll unpack what actually happens when a CPG company gets a forecast wrong during a critical commercial window and explore why the data to prevent it usually existed inside the company but never reached the model.</p>
+
+    <h3 style="color: #0a6ed1;">📅 Session Details</h3>
+    <p><strong>📅 Date:</strong> {{webinarDate}}<br>
+    <strong>⏰ Time:</strong> {{webinarTime}} {{webinarTimezone}}<br>
+    <strong>⏱️ Duration:</strong> {{webinarDuration}} minutes</p>
+
+    <div style="text-align: center;">
+      <a href="{{registerLink}}" class="cta-button">🎯 Register Now</a>
+    </div>
+
+    <p style="margin-top: 25px; color: #666;">See you tomorrow!</p>
+    <p style="color: #666;">Best regards,<br><strong>The VASPP GmbH</strong></p>
+  </div>
+  
+  <div class="footer">
+    <p>© {{year}} VASPP GmbH. All rights reserved.</p>
+  </div>
+</body>
+</html>

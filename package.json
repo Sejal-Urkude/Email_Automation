@@ -1,0 +1,25 @@
+{
+  "name": "webinar-email-automation",
+  "version": "1.0.0",
+  "description": "Automated email sequence for webinar promotion",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "send:test": "node utils/test-email.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.6",
+    "cors": "^2.8.6",
+    "cron": "^3.1.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "fs-extra": "^11.4.0",
+    "handlebars": "^4.7.9",
+    "nodemailer": "^6.10.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "firstName": "Sejal",
+    "lastName": "Urkude",
+    "email": "sejalurkude2604@gmail.com",
+    "company": "VASPP",
+    "registered": false,
+    "attended": false,
+    "createdAt": "2026-09-15T08:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "firstName": "Rahul",
+    "lastName": "Sharma",
+    "email": "rahul.sharma@gmail.com",
+    "company": "Infosys",
+    "registered": true,
+    "attended": false,
+    "createdAt": "2026-09-15T08:10:00.000Z"
+  },
+  {
+    "id": 3,
+    "firstName": "Priya",
+    "lastName": "Patil",
+    "email": "priya.patil@gmail.com",
+    "company": "TCS",
+    "registered": true,
+    "attended": true,
+    "createdAt": "2026-09-15T08:20:00.000Z"
+  },
+  {
+    "id": 4,
+    "firstName": "Amit",
+    "lastName": "Verma",
+    "email": "amit.verma@gmail.com",
+    "company": "Wipro",
+    "registered": false,
+    "attended": false,
+    "createdAt": "2026-09-15T08:30:00.000Z"
+  },
+  {
+    "id": 5,
+    "firstName": "Sneha",
+    "lastName": "Kulkarni",
+    "email": "sneha.kulkarni@gmail.com",
+    "company": "Accenture",
+    "registered": false,
+    "attended": false,
+    "createdAt": "2026-09-15T08:40:00.000Z"
+  },
+  {
+    "id": 6,
+    "firstName": "Karan",
+    "lastName": "Joshi",
+    "email": "karan.joshi@gmail.com",
+    "company": "Capgemini",
+    "registered": true,
+    "attended": false,
+    "createdAt": "2026-09-15T08:50:00.000Z"
+  }
+]

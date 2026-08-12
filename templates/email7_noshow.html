@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You Missed It - Recording Available</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #e67e22, #d35400); color: white; padding: 25px 20px; text-align: center; border-radius: 8px 8px 0 0; }
+    .content { padding: 30px 25px; background: #ffffff; border: 1px solid #e0e0e0; border-top: none; border-radius: 0 0 8px 8px; }
+    .cta-button { display: inline-block; padding: 12px 30px; background: #0a6ed1; color: white; text-decoration: none; border-radius: 6px; margin: 10px 5px; font-weight: bold; }
+    .cta-button:hover { background: #0858a8; }
+    .cta-button-orange { background: #e67e22; }
+    .cta-button-orange:hover { background: #d35400; }
+    .section-box { background: #f5f7fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+    .footer { text-align: center; padding: 20px; color: #888; font-size: 12px; border-top: 1px solid #eee; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>VASPP GmbH</h2>
+    <p style="margin: 5px 0 0; opacity: 0.9;">📹 Recording Now Available</p>
+  </div>
+  
+  <div class="content">
+    <p>Hi {{firstName}},</p>
+    <p><strong>We missed you</strong> at yesterday's session on demand forecasting in CPG — but the recording is ready for you.</p>
+
+    <div class="section-box">
+      <h3 style="color: #0a6ed1; margin-top: 0;">📹 Watch the Recording</h3>
+      <p>In 45 minutes, we explored:</p>
+      <ul>
+        <li>Where demand forecasting consistently breaks down in the CPG industry</li>
+        <li>What happens when a forecast fails during a critical commercial window</li>
+        <li>Where the real gap sits — not in the algorithm, but in the data foundation underneath it</li>
+      </ul>
+      <div style="text-align: center;">
+        <a href="{{recordingLink}}" class="cta-button">▶️ Watch the Recording</a>
+      </div>
+    </div>
+
+    <div class="section-box" style="background: #fff8e1; border-left: 4px solid #ffc107;">
+      <h3 style="color: #e65100; margin-top: 0;">💬 Let's Continue the Conversation</h3>
+      <p>If any of this resonates with what's happening at your company, we'd <strong>genuinely like to hear about it</strong> — over a simple conversation.</p>
+      <div style="text-align: center;">
+        <a href="{{bookingLink}}" class="cta-button cta-button-orange">📅 Book a Conversation</a>
+      </div>
+    </div>
+
+    <div style="background: #e3f2fd; padding: 15px 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #0a6ed1;">
+      <p style="margin: 0;"><strong>📢 Session 2 is Coming</strong></p>
+      <p style="margin: 5px 0 0;">We'll go into the architecture, the data layer, and the model approach. Details to follow.</p>
+    </div>
+
+    <p style="margin-top: 25px; color: #666;">Best regards,<br><strong>The VASPP Team</strong></p>
+  </div>
+  
+  <div class="footer">
+    <p>© {{year}} VASPP GmbH. All rights reserved.</p>
+  </div>
+</body>
+</html>
